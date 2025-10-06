@@ -27,6 +27,7 @@ public class AccessingDataRestApplication {
             BuddyInfo ronny = new BuddyInfo("Ronny", "India", "555");
 
             AddressBook addressBook1 = new AddressBook();
+            addressBook1.setOwnerName(ronny.getName());
             addressBook1.addBuddy(johnny);
             addressBook1.addBuddy(bonnie);
 

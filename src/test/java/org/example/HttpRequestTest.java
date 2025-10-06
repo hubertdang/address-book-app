@@ -43,7 +43,7 @@ public class HttpRequestTest {
         ResponseEntity<String> response = this.restTemplate.getForEntity(
                 "http://localhost:" + port + "/addressBooks/1", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).contains("Johnny", "Bonnie");
+        assertThat(response.getBody()).contains("Ronny", "Johnny", "Bonnie");
     }
 
     @Test

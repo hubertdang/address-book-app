@@ -7,6 +7,9 @@
 <body>
     <h1>Address Book #<span th:text="${addressBook.id}"></span></h1>
 
+    <h2>Owner:</h2>
+    <p th:text="${addressBook.ownerName}"></p>
+
     <h2>Buddies:</h2>
     <ul>
         <li th:each="buddy : ${addressBook.buddies}">

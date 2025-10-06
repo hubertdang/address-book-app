@@ -14,8 +14,11 @@ public class AddressBook {
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<BuddyInfo> buddies;
 
+    private String ownerName;
+
     public AddressBook() {
         buddies = new ArrayList<BuddyInfo>();
+        ownerName = "Owner";
     }
 
     public Long getId() {
@@ -24,6 +27,13 @@ public class AddressBook {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
     public void addBuddy(BuddyInfo buddy) {
