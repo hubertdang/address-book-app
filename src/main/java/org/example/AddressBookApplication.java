@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Bean;
 import java.util.Optional;
 
 @SpringBootApplication
-public class AccessingDataRestApplication {
-    private static final Logger log = LoggerFactory.getLogger(AccessingDataRestApplication.class);
+public class AddressBookApplication {
+    private static final Logger log = LoggerFactory.getLogger(AddressBookApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(AccessingDataRestApplication.class, args);
+        SpringApplication.run(AddressBookApplication.class, args);
     }
 
     @Bean
