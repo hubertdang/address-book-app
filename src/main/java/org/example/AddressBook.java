@@ -16,7 +16,7 @@ public class AddressBook {
 
     private String ownerName;
 
-    public AddressBook() {
+    protected AddressBook() {
         buddies = new ArrayList<BuddyInfo>();
         ownerName = "Owner";
     }
