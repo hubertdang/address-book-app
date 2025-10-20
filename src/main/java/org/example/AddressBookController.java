@@ -24,6 +24,8 @@ public class AddressBookController {
         return "addressbook";
     }
 
+    /* Need to make custom endpoint because the endpoint exposed by spring data rest is for the whole buddies list and
+       not individual buddies */
     @PostMapping("/{id}/buddies")
     public ResponseEntity<AddressBook> addBuddy(@PathVariable Long id, @RequestBody BuddyInfo buddyInfo) {
         AddressBook addressBook = addressBookRepository.findById(id)
@@ -32,6 +34,19 @@ public class AddressBookController {
         addressBook.addBuddy(buddyInfo);
         addressBookRepository.save(addressBook);
 
-        return new ResponseEntity<>(addressBook, HttpStatus.CREATED);
+        return new ResponseEntity<>(addressBook, HttpStatus.CREATED); // Returns addressBook as JSON
+    }
+
+    /* Need to make custom endpoint because the endpoint exposed by spring data rest is for the whole buddies list and
+       not individual buddies */
+    @DeleteMapping("/{id}/buddies")
+    public ResponseEntity<AddressBook> removeBuddy(@PathVariable Long id, @RequestBody BuddyInfo buddyInfo) {
+        AddressBook addressBook = addressBookRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "AddressBook not found"));
+
+        addressBook.removeBuddy(buddyInfo);
+        addressBookRepository.save(addressBook);
+
+        return new ResponseEntity<>(addressBook, HttpStatus.OK); // Returns addressBook as JSON
     }
 }
