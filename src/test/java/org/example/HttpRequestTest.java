@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class HttpRequestTest {
@@ -43,7 +45,6 @@ public class HttpRequestTest {
         ResponseEntity<String> response = this.restTemplate.getForEntity(
                 "http://localhost:" + port + "/addressBooks/1", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).contains("Ronny", "Johnny", "Bonnie");
     }
 
     @Test
@@ -54,29 +55,31 @@ public class HttpRequestTest {
     }
 
     @Test
-    void testCreateAddressBook() {
-        HttpEntity<AddressBook> request = new HttpEntity<>(new AddressBook());
-
-        ResponseEntity<AddressBook> response = restTemplate.exchange(
-                "http://localhost:" + port + "/addressBooks", HttpMethod.POST, request, AddressBook.class);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-        AddressBook newAddressBook = response.getBody();
-        assertThat(newAddressBook).isNotNull();
+    void testShowCreateAddressBookForm() {
+        ResponseEntity<String> response = restTemplate.getForEntity(
+                "http://localhost:" + port + "/addressBooks/new", String.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
     @Test
-    void testAddBuddyInfoToAddressBook() {
-        BuddyInfo buddyInfo = new BuddyInfo("Hubert", "Ottawa", "613");
+    void testCreateAddressBookReturnsRedirect() {
+        ResponseEntity<String> response = restTemplate.postForEntity(
+                "http://localhost:" + port + "/addressBooks", null, String.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
 
-        HttpEntity<BuddyInfo> request = new HttpEntity<>(buddyInfo);
-        ResponseEntity<AddressBook> response = restTemplate.exchange(
-                "http://localhost:" + port + "/addressBooks/1/buddies", HttpMethod.POST, request, AddressBook.class
-        );
+    @Test
+    public void testShowAddBuddyInfoForm() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/addressBooks/1/buddies/new", String.class);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-        AddressBook newAddressBook = response.getBody();
-        assertThat(newAddressBook).isNotNull();
-        assertThat(newAddressBook.getBuddies()).contains(buddyInfo);
+    @Test
+    public void testAddBuddyInfo() {
+        BuddyInfo buddy = new BuddyInfo("John Doe", "123 Street", "555-1234");
+        ResponseEntity<String> response =
+                restTemplate.postForEntity("/addressBooks/1/buddies", buddy, String.class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 }

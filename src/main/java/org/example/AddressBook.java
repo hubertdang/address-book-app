@@ -32,6 +32,7 @@ public class AddressBook {
     public String getOwnerName() {
         return ownerName;
     }
+
     public void setOwnerName(String ownerName) {
         this.ownerName = ownerName;
     }
