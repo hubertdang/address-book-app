@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Address Books</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/address-books.js"></script>
+</head>
+<body>
+    <h1>Address Books</h1>
+    <ul id="addressBookList">
+        <p>Loading address books...</p>
+    </ul>
+
+    <h3>View Address Book</h3>
+    <form id="viewAddressBookForm">
+        <input type="number" id="viewAddressBookId" name="viewAddressBookId" placeholder="Address Book ID" required>
+        <button type="submit">View</button>
+    </form>
+    <ul id="buddyList">
+        <!-- Buddy list will appear here -->
+    </ul>
+
+    <h3>Create new address book</h3>
+    <form id="createAddressBookForm">
+        <input type="text" id="ownerName" name="ownerName" placeholder="Owner Name" required>
+        <button type="submit">Create</button>
+    </form>
+
+    <h3>Add buddy info to existing address book</h3>
+    <form id="addBuddyInfoForm">
+        <input type="number" id="addressBookId" name="addressBookId" placeholder="Address Book ID" required>
+        <input type="text" id="buddyName" name="buddyName" placeholder="Buddy Name" required>
+        <input type="text" id="buddyPhone" name="buddyPhone" placeholder="Phone Number">
+        <input type="text" id="buddyAddress" name="buddyAddress" placeholder="Address">
+        <button type="submit">Add Buddy</button>
+    </form>
+</body>
+</html>
