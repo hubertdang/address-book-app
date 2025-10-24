@@ -9,7 +9,7 @@
 
     <p>Address Book Owner: <span th:text="${addressBook.ownerName}"></span></p>
 
-    <form th:action="@{/addressBooks/{id}/buddies(id=${addressBook.id})}" th:object="${buddyInfo}" method="post">
+    <form th:action="@{/api/addressBooks/{id}/buddies(id=${addressBook.id})}" th:object="${buddyInfo}" method="post">
         <p>Name: <input type="text" th:field="*{name}" /></p>
         <p>Phone number: <input type="text" th:field="*{phoneNumber}" /></p>
         <p>Address: <input type="text" th:field="*{address}" /></p>

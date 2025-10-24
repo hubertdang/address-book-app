@@ -59,7 +59,10 @@ public class BuddyInfo {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         BuddyInfo buddyInfo = (BuddyInfo) o;
-        return Objects.equals(name, buddyInfo.name) && Objects.equals(address, buddyInfo.address) && Objects.equals(phoneNumber, buddyInfo.phoneNumber);
+        return Objects.equals(name, buddyInfo.name) &&
+                Objects.equals(address, buddyInfo.address) &&
+                Objects.equals(phoneNumber, buddyInfo.phoneNumber) &&
+                Objects.equals(id, buddyInfo.id);
     }
 
     @Override

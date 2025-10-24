@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Address Books</title>
+</head>
+<body>
+    <h1>Address Books:</h1>
+    <ul>
+        <li th:each="addressBook : ${addressBooks}">
+            <span th:text="${addressBook.id}"></span> -
+            Owner: <span th:text="${addressBook.ownerName}"></span>
+        </li>
+    </ul>
+</body>
+</html>

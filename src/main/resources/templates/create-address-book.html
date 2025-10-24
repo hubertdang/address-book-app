@@ -7,7 +7,7 @@
 <body>
     <h1>Create a New Address Book</h1>
 
-    <form th:action="@{/addressBooks}" th:object="${addressBook}" method="post">
+    <form th:action="@{/api/addressBooks}" th:object="${addressBook}" method="post">
     <p>Owner name: <input type="text" th:field="*{ownerName}" /></p>
         <p>
             <input type="submit" value="Create" />
